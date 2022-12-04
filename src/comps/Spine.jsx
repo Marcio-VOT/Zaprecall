@@ -3,14 +3,16 @@ import styled from "styled-components";
 import Questions from "./Questions";
 import imgLogo from "../assets/img/logo.png";
 
-export default () => {
+export default (props) => {
   return (
     <ScreenContainer>
       <LogoContainer>
         <img src={imgLogo} />
         <div>ZapRecall</div>
       </LogoContainer>
-      <Questions />
+      {props.cards.map((c, index) => (
+        <Questions cards={c} index={index} key={index} />
+      ))}
     </ScreenContainer>
   );
 };
