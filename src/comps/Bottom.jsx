@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-export default () => {
-  return <Bottom> X/X CONCLUÍDOS</Bottom>;
+export default (props) => {
+  return (
+    <Bottom>
+      {props.answer}/{props.total} CONCLUÍDOS
+    </Bottom>
+  );
 };
 
 const Bottom = styled.div`

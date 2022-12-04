@@ -33,11 +33,12 @@ export default () => {
         "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
     },
   ];
+  const [answer, setAnswer] = React.useState(0);
   return (
     <>
       <GlobalStyle />
-      <Spine cards={cards} />
-      <Bottom />
+      <Spine cards={cards} answer={answer} setAnswer={setAnswer} />
+      <Bottom answer={answer} total={cards.length} />
     </>
   );
 };

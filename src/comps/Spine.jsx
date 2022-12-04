@@ -11,7 +11,13 @@ export default (props) => {
         <div>ZapRecall</div>
       </LogoContainer>
       {props.cards.map((c, index) => (
-        <Questions cards={c} index={index} key={index} />
+        <Questions
+          answer={props.answer}
+          setAnswer={props.setAnswer}
+          card={c}
+          index={index}
+          key={index}
+        />
       ))}
     </ScreenContainer>
   );

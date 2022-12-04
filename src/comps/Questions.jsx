@@ -12,6 +12,7 @@ export default (props) => {
   let [select1, setSelect1] = React.useState(true);
   let auxSelect1 = select1;
   let [holdOption, setHoldOption] = React.useState(0);
+  let [color, setColor] = React.useState("");
   function next() {
     auxSelect = !auxSelect;
     setSelect(auxSelect);
@@ -22,21 +23,28 @@ export default (props) => {
   }
   return (
     <>
-      <QuestionClosed display={auxSelect ? "none" : "flex"}>
-        <FrstOption holdOption={holdOption} next={next} index={props.index} />
+      <QuestionClosed display={auxSelect ? "none" : "flex"} color={color}>
+        <FrstOption
+          holdOption={holdOption}
+          next={next}
+          index={props.index}
+          setColor={setColor}
+        />
       </QuestionClosed>
 
       <QuestionOpn display={auxSelect && auxSelect1 ? "flex" : "none"}>
-        <p>pergunta {props.index + 1}</p>
+        <p>{props.card.question}</p>
         <img src={imgVira} onClick={() => next1()} />
       </QuestionOpn>
 
       <QuestionOpn display={auxSelect1 ? "none" : "flex"}>
-        <p>JSX é uma sintaxe para escrever HTML dentro do JS</p>
+        <p>{props.card.answer}</p>
         <Options
           setSelect1={setSelect1}
           setSelect={setSelect}
           setHoldOption={setHoldOption}
+          answer={props.answer}
+          setAnswer={props.setAnswer}
         />
       </QuestionOpn>
     </>
@@ -45,6 +53,7 @@ export default (props) => {
 function FrstOption(props) {
   switch (props.holdOption) {
     case 0:
+      props.setColor("#333333");
       return (
         <>
           <p>pergunta {props.index + 1}</p>
@@ -53,6 +62,7 @@ function FrstOption(props) {
       );
       break;
     case 1:
+      props.setColor("#FF3030");
       return (
         <>
           <p>pergunta {props.index + 1}</p>
@@ -61,6 +71,7 @@ function FrstOption(props) {
       );
       break;
     case 2:
+      props.setColor("#FF922E");
       return (
         <>
           <p>pergunta {props.index + 1}</p>
@@ -69,6 +80,7 @@ function FrstOption(props) {
       );
       break;
     case 3:
+      props.setColor("#2FBE34");
       return (
         <>
           <p>pergunta {props.index + 1}</p>
@@ -84,6 +96,7 @@ function Options(props) {
     props.setSelect1(true);
     props.setSelect(false);
     props.setHoldOption(num);
+    props.setAnswer(props.answer + 1);
   }
 
   return (
@@ -138,7 +151,9 @@ const QuestionClosed = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: #333333;
+    color: ${(props) => props.color};
+    text-decoration: ${(props) =>
+      props.color == "#333333" ? "" : "line-through"};
   }
 `;
 const QuestionOpn = styled.div`
