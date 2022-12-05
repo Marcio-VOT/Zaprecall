@@ -8,7 +8,7 @@ export default (props) => {
     <ScreenContainer>
       <LogoContainer>
         <img src={imgLogo} />
-        <div>ZapRecall</div>
+        <h1>ZapRecall</h1>
       </LogoContainer>
       {props.cards.map((c, index) => (
         <Questions
