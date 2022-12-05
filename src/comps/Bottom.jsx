@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export default (props) => {
   return (
-    <Bottom>
+    <Bottom data-test="footer">
       {props.answer}/{props.total} CONCLUÍDOS
     </Bottom>
   );

@@ -22,7 +22,7 @@ export default (props) => {
     setSelect1(auxSelect1);
   }
   return (
-    <>
+    <div data-test="flashcard">
       <QuestionClosed display={auxSelect ? "none" : "flex"} color={color}>
         <FrstOption
           holdOption={holdOption}
@@ -33,12 +33,12 @@ export default (props) => {
       </QuestionClosed>
 
       <QuestionOpn display={auxSelect && auxSelect1 ? "flex" : "none"}>
-        <p>{props.card.question}</p>
-        <img src={imgVira} onClick={() => next1()} />
+        <p data-test="flashcard-text">{props.card.question}</p>
+        <img src={imgVira} onClick={() => next1()} data-test="turn-btn" />
       </QuestionOpn>
 
       <QuestionOpn display={auxSelect1 ? "none" : "flex"}>
-        <p>{props.card.answer}</p>
+        <p data-test="flashcard-text">{props.card.answer}</p>
         <Options
           setSelect1={setSelect1}
           setSelect={setSelect}
@@ -47,7 +47,7 @@ export default (props) => {
           setAnswer={props.setAnswer}
         />
       </QuestionOpn>
-    </>
+    </div>
   );
 };
 function FrstOption(props) {
@@ -56,8 +56,12 @@ function FrstOption(props) {
       props.setColor("#333333");
       return (
         <>
-          <p>pergunta {props.index + 1}</p>
-          <img src={imgSeta} onClick={() => props.next()} />
+          <p data-test="flashcard-text">Pergunta {props.index + 1}</p>
+          <img
+            src={imgSeta}
+            onClick={() => props.next()}
+            data-test="play-btn"
+          />
         </>
       );
       break;
@@ -65,8 +69,8 @@ function FrstOption(props) {
       props.setColor("#FF3030");
       return (
         <>
-          <p>pergunta {props.index + 1}</p>
-          <img src={iconeErro} />
+          <p data-test="flashcard-text">Pergunta {props.index + 1}</p>
+          <img src={iconeErro} data-test="no-icon" />
         </>
       );
       break;
@@ -74,8 +78,8 @@ function FrstOption(props) {
       props.setColor("#FF922E");
       return (
         <>
-          <p>pergunta {props.index + 1}</p>
-          <img src={iconeQuase} />
+          <p data-test="flashcard-text">Pergunta {props.index + 1}</p>
+          <img src={iconeQuase} data-test="partial-icon" />
         </>
       );
       break;
@@ -83,8 +87,8 @@ function FrstOption(props) {
       props.setColor("#2FBE34");
       return (
         <>
-          <p>pergunta {props.index + 1}</p>
-          <img src={iconeCerto} />
+          <p data-test="flashcard-text">Pergunta {props.index + 1}</p>
+          <img src={iconeCerto} data-test="zap-icon" />
         </>
       );
       break;
@@ -101,13 +105,21 @@ function Options(props) {
 
   return (
     <ContainerButton>
-      <Button color={"#FF3030"} onClick={() => getOption(1)}>
+      <Button color={"#FF3030"} onClick={() => getOption(1)} data-test="no-btn">
         Não lembrei
       </Button>
-      <Button color={"#FF922E"} onClick={() => getOption(2)}>
+      <Button
+        color={"#FF922E"}
+        onClick={() => getOption(2)}
+        data-test="partial-btn"
+      >
         Quase não lembrei
       </Button>
-      <Button color={"#2FBE34"} onClick={() => getOption(3)}>
+      <Button
+        color={"#2FBE34"}
+        onClick={() => getOption(3)}
+        data-test="zap-btn"
+      >
         ZAP!
       </Button>
     </ContainerButton>
